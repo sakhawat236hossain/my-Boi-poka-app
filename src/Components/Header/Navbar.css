@@ -1,0 +1,20 @@
+.nav-link {
+  margin: 8px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  color: #333; /* default color */
+  text-decoration: none; /* default no underline */
+}
+
+.nav-link:hover {
+  color: #23BE0A;
+
+}
+
+.nav-link-active {
+  color: #23BE0A;
+  font-weight: 600;
+  text-decoration: underline;   /* ✅ underline active link */
+ 
+}
