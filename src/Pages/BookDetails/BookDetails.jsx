@@ -2,6 +2,12 @@ import React from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 import { addToStoredDB } from "../../Utility/AddToDb";
 
+
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal)
+
 const BookDetails = () => {
   const { id } = useParams(); // string
   const data = useLoaderData(); // এখন data হবে array
@@ -10,7 +16,15 @@ const BookDetails = () => {
   const singleBook = data.find((book) => book.bookId === convertId);
 
   const handelMarksAsRead = (id) => {
-    console.log("Clicked Book ID:", id);
+    
+Swal.fire({
+  position: "top-end",
+  icon: "success",
+  title: "Your work has been saved",
+  showConfirmButton: false,
+  timer: 1500
+});
+
     addToStoredDB(id);
   };
 

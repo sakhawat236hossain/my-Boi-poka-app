@@ -12,7 +12,6 @@ const addToStoredDB = (id) => {
   const storedBookData = getStoredBook();
 
   if (storedBookData.includes(id)) {
-    alert("ভাই, এইটা আগে থেকেই আছে!");
     return
   } else {
     storedBookData.push(id);
@@ -21,4 +20,4 @@ const addToStoredDB = (id) => {
   }
 };
 
-export { addToStoredDB };
+export { addToStoredDB,getStoredBook };

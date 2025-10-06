@@ -5,6 +5,7 @@ import Error from "../Pages/ErrorPage/Error";
 import Home from "../Pages/Home/home";
 import About from "../Pages/About/About";
 import BookDetails from "../Pages/BookDetails/BookDetails";
+import ReadList from "../Pages/ReadList/ReadList";
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +25,14 @@ export const router = createBrowserRouter([
       {
         path: "about",
         Component: About,
+      },
+      {
+       path:"readList",
+       loader: async () => {
+          const res = await fetch("/Data.json"); 
+          return res.json(); // ✅ সরাসরি array return হচ্ছে
+        },
+       Component:ReadList
       },
       {
         path: "bookDetails/:id",

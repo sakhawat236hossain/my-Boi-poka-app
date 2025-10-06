@@ -11,9 +11,9 @@ const Navbar = () => {
       <NavLink to="/about" className="nav-link">
         About
       </NavLink>
-      {/* <NavLink to="/bookDetails" className="nav-link">
-       Book Details
-      </NavLink> */}
+      <NavLink to="/readList" className="nav-link">
+      ReadList
+      </NavLink>
     </>
   );
 
