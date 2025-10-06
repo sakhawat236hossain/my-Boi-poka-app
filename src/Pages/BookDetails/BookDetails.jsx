@@ -1,11 +1,18 @@
 import React from "react";
 import { useLoaderData, useParams } from "react-router-dom";
+import { addToStoredDB } from "../../Utility/AddToDb";
 
 const BookDetails = () => {
-  const { id } = useParams(); // id comes as string
-  const data = useLoaderData(); // loader data
-  const convertId = Number(id); // string -> number
+  const { id } = useParams(); // string
+  const data = useLoaderData(); // এখন data হবে array
+  const convertId = Number(id);
+
   const singleBook = data.find((book) => book.bookId === convertId);
+
+  const handelMarksAsRead = (id) => {
+    console.log("Clicked Book ID:", id);
+    addToStoredDB(id);
+  };
 
   if (!singleBook)
     return <div className="p-10 text-center">Book not found</div>;
@@ -20,6 +27,7 @@ const BookDetails = () => {
     publisher,
     yearOfPublishing,
     tags,
+    bookId
   } = singleBook;
 
   return (
@@ -59,12 +67,18 @@ const BookDetails = () => {
               <span className="text-[#23BE0A]">{yearOfPublishing}</span>
             </p>
           </div>
-          <div className="flex gap-4 flex-wrap">
-            <button className="btn bg-[#23BE0A] text-white hover:bg-green-600">
-              Read
+          <div className="flex gap-4 flex-wrap mt-4">
+            {/* Mark as Read Button */}
+            <button
+              onClick={() => handelMarksAsRead(bookId)}
+              className="btn bg-green-500 text-white hover:bg-green-600"
+            >
+              Mark as Read
             </button>
+
+            {/* Add to Wish List Button */}
             <button className="btn bg-[#59C6D2] text-white hover:bg-blue-500">
-              Wish List
+              Add To Wish List
             </button>
           </div>
         </div>

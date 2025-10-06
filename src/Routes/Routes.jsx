@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { createBrowserRouter } from "react-router";
 import Root from "../Pages/Root/Root";
 import Error from "../Pages/ErrorPage/Error";
@@ -6,16 +6,18 @@ import Home from "../Pages/Home/home";
 import About from "../Pages/About/About";
 import BookDetails from "../Pages/BookDetails/BookDetails";
 
-
 export const router = createBrowserRouter([
   {
     path: "/",
     Component: Root,
-    errorElement: <Error></Error>,
+    errorElement: <Error />,
     children: [
       {
         index: true,
-        loader: () => fetch("Data.json"),
+        loader: async () => {
+          const res = await fetch("/Data.json"); 
+          return res.json(); // ✅ সরাসরি array return হচ্ছে
+        },
         path: "/",
         Component: Home,
       },
@@ -24,9 +26,12 @@ export const router = createBrowserRouter([
         Component: About,
       },
       {
-        path:"/bookDetails/:id",
-        loader: () => fetch("./Data.json"),
-        Component:BookDetails
+        path: "bookDetails/:id",
+        loader: async () => {
+          const res = await fetch("/Data.json");
+          return res.json(); // ✅ array return
+        },
+        Component: BookDetails,
       },
     ],
   },

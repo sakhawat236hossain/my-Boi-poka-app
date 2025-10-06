@@ -2,7 +2,7 @@ import { MdOutlineStarBorderPurple500 } from "react-icons/md";
 import { Link } from "react-router";
 
 const Book = ({ singleBook }) => {
-    console.log(singleBook);
+    // console.log(singleBook);
   return (
     <Link to={`/bookDetails/${singleBook.bookId}`}>
      <div className="card  bg-white w-80 sm:w-96 shadow-lg border border-gray-200 rounded-2xl mx-auto hover:shadow-2xl transition-shadow duration-300">
